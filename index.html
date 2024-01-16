@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>h3h3h3</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        main {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        article {
+            width: 300px;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        input[type="text"] {
+            padding: 5px;
+            width: 200px;
+            margin-right: 10px;
+        }
+
+        button {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Web asal asalan</h1>
+    </header>
+
+    <main>
+        <section>
+            <label for="searchNameInput">Cari berdasarkan nama</label>
+            <input type="text" id="searchNameInput" placeholder="Type name to search">
+            <label for="searchJobInput">Cari berdasarkan pekerjaan</label>
+            <input type="text" id="searchJobInput" placeholder="Type job to search">
+            <button onclick="searchPeople()">Search</button>
+        </section>
+
+        <section id="semanticData">
+            <!-- Semantic data will be displayed here -->
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; h3h3h3</p>
+    </footer>
+
+    <script>
+        const semanticData = [
+            {
+                "@context": "http://schema.org",
+                "@type": "Person",
+                "name": "Muklis",
+                "jobTitle": "Software Engineer"
+            },
+            {
+                "@context": "http://schema.org",
+                "@type": "Person",
+                "name": "Juned",
+                "jobTitle": "Data Scientist"
+            },
+            {
+                "@context": "http://schema.org",
+                "@type": "Person",
+                "name": " Mas bram",
+                "jobTitle": "Graphic Designer"
+            },
+            {
+                "@context": "http://schema.org",
+                "@type": "Person",
+                "name": "Ryan Cakep",
+                "jobTitle": "Rock Star"
+            },
+        ];
+
+        const semanticDataContainer = document.getElementById('semanticData');
+
+        function displaySemanticData(data) {
+            semanticDataContainer.innerHTML = '';
+
+            data.forEach(person => {
+                const article = document.createElement('article');
+                article.innerHTML = `<h2>${person.name}</h2><p>${person.jobTitle}</p>`;
+                semanticDataContainer.appendChild(article);
+            });
+        }
+
+        function searchPeople() {
+            const searchNameQuery = document.getElementById('searchNameInput').value.toLowerCase();
+            const searchJobQuery = document.getElementById('searchJobInput').value.toLowerCase();
+
+            const searchResults = semanticData.filter(person =>
+                person.name.toLowerCase().includes(searchNameQuery) &&
+                person.jobTitle.toLowerCase().includes(searchJobQuery)
+            );
+
+            displaySemanticData(searchResults);
+        }
+
+        // Display all data initially
+        displaySemanticData(semanticData);
+    </script>
+
+</body>
+</html>
